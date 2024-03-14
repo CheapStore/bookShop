@@ -1,0 +1,11 @@
+### create BOOK
+POST localhost:8081/book/create
+Content-Type: application/json
+
+{
+  "name": "Mirzo Ulug`bek",
+  "language": "UZB",
+  "price": 90,
+  "attachID": "https://urlib.uz/wp-content/uploads/2023/09/289.jpg",
+  "author": "Maqsud Shayxzoda"
+}
