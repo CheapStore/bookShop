@@ -1,11 +1,11 @@
 ### create BOOK
-POST localhost:8081/book/create
+POST localhost:8081/book/save
 Content-Type: application/json
 
 {
-  "name": "Mirzo Ulug`bek",
+  "name": "Bahor keldi seni so`roqlab",
   "language": "UZB",
-  "price": 90,
-  "attachID": "https://urlib.uz/wp-content/uploads/2023/09/289.jpg",
-  "author": "Maqsud Shayxzoda"
+  "price": 100,
+  "attachID": "http://old.xushnudbek.uz/wp-content/uploads/2016/02/yillik-reyting-kitob-1.jpg",
+  "author": "Zulfiya"
 }

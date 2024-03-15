@@ -38,6 +38,9 @@ public class BookEntity {
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 
+    @Column(name = "description",columnDefinition = "TEXT")
+    private String description;
+
 
 
 

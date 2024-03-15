@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BookService {
@@ -29,5 +31,26 @@ public class BookService {
         entity.setPrice(dto.getPrice());
         repository.save(entity);
         return true;
+    }
+
+    public List<BookDTO> getAll() {
+        Iterable<BookEntity> all = repository.findAll();
+        List<BookDTO> list = new ArrayList<>();
+        for (BookEntity entity : all) {
+            list.add(dto(entity));
+        }
+        return list;
+    }
+
+    private BookDTO dto(BookEntity entity) {
+        BookDTO dto = new BookDTO();
+        dto.setId(entity.getId());
+        dto.setAttachID(entity.getAttach_id());
+        dto.setName(entity.getName());
+        dto.setDescription(entity.getDescription());
+        dto.setLanguage(entity.getLanguage());
+        dto.setAuthor(entity.getAuthor());
+        dto.setPrice(entity.getPrice());
+        return dto;
     }
 }

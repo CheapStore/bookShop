@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+    .header{
+        margin-left: 15px;
+    }
+
+
+
+
+
+    </style>
+
+
+
+
+</head>
+<body>
+
+<a style="text-align: left" th:href="@{/book/menu}" methods="GET" > <b><<</b>MENU </a>
+<div style="width: 50%; margin: auto">
+
+       <form method="POST"
+              th:action="@{/book/save}" th:object="${book}">
+            <label class="header" for="name">Name</label>
+            <input type="text" th:field="${book.name}" id="name" name="name" placeholder="Book Name">
+
+            <label class="header" for="author">Author</label>
+            <input type="text" th:field="${book.author}" id="author" name="author" placeholder="Book Author">
+
+            <label class="header" for="images">ImagesId</label>
+            <input type="text" th:field="${book.attachID}" id="images" name="images" placeholder="Book ImagesID">
+           <br><br>
+
+           <label for="price">Price</label>
+           <input type="number" th:field="${book.price}" id="price" name="price" placeholder="Book Price">
+
+           <label for="lan">Language</label>
+           <input type="text" th:field="${book.language}" id="lan" name="lan" placeholder="UZB ENG RUS"><br><br>
+           <button  style="cursor: pointer" type="submit" class="button">Save</button>
+
+        </form>
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

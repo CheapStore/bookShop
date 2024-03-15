@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <style>
+        table {
+            margin-left: 100px;
+            margin-top: 20px;
+            width: 80%;
+            border-collapse: collapse;
+
+            color: black;
+        }
+
+
+        th {
+            border: 3px solid red;
+            padding: 5px;
+        }
+
+        td {
+            border: 2px solid black;
+            padding: 5px;
+        }
+
+        thead {
+            text-align: left;
+        }
+
+        a {
+            color: black;
+            font-weight: bold;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <form th:action="@{/profile/adm/menu}" >
+    <button type="submit"> Admin Page </button>
+     </form>
+<table>
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr th:each="list, iStat : ${list}">
+        <td th:text="${iStat.count}"></td>
+        <td th:text="${list.id}"></td>
+        <td th:text="${list.name}"></td>
+        <td th:text="${list.surname}"></td>
+        <td th:text="${list.email}"></td>
+        <td th:text="${list.role}"></td>
+        <td>
+            <a th:href="@{/profile/go-to-edit/{profileID}(profileID=${list.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/profile/go-to-delete/{profileID}(profileID=${list.id})}">Delete</a>
+        </td>
+    </tr>
+
+    </tbody>
+
+</table>
+
+
+</body>
+</html>

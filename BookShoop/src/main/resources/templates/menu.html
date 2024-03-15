@@ -12,145 +12,103 @@
             font-size: 20px;
         }
 
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        h5 {
+            margin-top: 0;
+            font-size: 20px;
+            text-align: center;
+
+        }
+
         button {
             cursor: pointer;
             font-size: 20px;
             border-radius: 10px;
         }
 
-        #reg{
-            text-align: center;
-        }
-
-
-
-
-        .image {
-            display: inline-block;
-            margin-left: auto;
-            margin-right: auto;
-            height: 30px;
-        }
-
-        .images {
-            text-align: center;
-            height: 320px;
-            width: 240px;
-            margin-left: 50px;
-
-        }
-
         .main {
-
-            margin: 2em auto;
-            padding: 25px;
-            width: 930px;
-
+            float: left;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
         }
 
-
-        b {
-            cursor: pointer;
+        .boox {
+            background-color: wheat;
+            width: 300px;
+            margin: 10px;
+            border-radius: 15px;
         }
 
-        .container {
-            margin-top: 5px;
+        .boox-image {
+            height: 300px;
+            width: 250px;
+            margin-bottom: 15px;
+            background-size: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .boox p {
+            padding: 2px;
+        }
+
+        .boox a {
+            background-color: black;
+            color: wheat;
+            padding: 5px 5px;
+            display: block;
             text-align: center;
+            margin: 10px 40px;
         }
+        .head{
+         margin-left: 100px;
+
+        }
+
 
     </style>
 </head>
 <body>
 
 
-<!--<header>-->
-<!--    <a th:href="@{/profile/create}" methods="GET"><b>Register</b></a>-->
-<!--    &lt;!&ndash;    <form th:action="@{/profile/create}" method="GET">&ndash;&gt;-->
-<!--    &lt;!&ndash;        <button  type="submit" class="button" >Register</button>&ndash;&gt;-->
-<!--    &lt;!&ndash;    </form>&ndash;&gt;-->
-<!--    <form th:action="@{/menu}" method="post">-->
-<!--        <div class="container">-->
-<!--            <label for="search"></label>-->
-<!--            <input type="text" placeholder="🔎Search" id="search" name="search" required>-->
-<!--            <button type="submit">Search</button>-->
-<!--        </div>-->
-<!--    </form>-->
-
-
-<!--    <div class="main">-->
-<!--        <div class="image">-->
-<!--            <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/294.jpg" alt="rasm bor">-->
-
-<!--        </div>-->
-<!--        <div class="image">-->
-<!--            <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/289.jpg" alt="rasm bor">-->
-<!--        </div>-->
-
-<!--        <div class="image">-->
-<!--            <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/288.jpg" alt="rasm bor">-->
-<!--        </div>-->
-
-<!--    </div>-->
-
-<!--    <div class="main">-->
-<!--        <div class="image">-->
-<!--            <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/278.jpg" alt="rasm bor">-->
-<!--        </div>-->
-<!--        <div class="image">-->
-<!--            <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/275.jpg" alt="rasm bor">-->
-<!--        </div>-->
-
-<!--        <div class="image">-->
-<!--            <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/274.jpg" alt="rasm bor">-->
-<!--        </div>-->
-
-<!--    </div>-->
-
-<!--</header>-->
 <header>
-    <div id="reg">
-         <a th:href="@{/profile/create}" methods="GET">Register</a>
-         <a th:href="@{/profile/chesk}" methods="GET">Login</a>
-    </div>
 
-    <form th:action="@{/book/search}" th:method="post" th:object="${search}">
+
+
+<div>
+    <form th:action="@{/book/search}" th:method="POST" th:object="${search}">
         <div class="container">
             <label for="search"></label>
             <input type="text" placeholder="🔎Search" id="search" name="search" required>
             <button type="submit">Search</button>
         </div>
     </form>
-
-    <form th:action="@{/menu}" method="post">
-        <div class="main">
-            <div class="image">
-                <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/294.jpg" alt="rasm bor">
-
-            </div>
-            <div class="image">
-                <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/289.jpg" alt="rasm bor">
-            </div>
-
-            <div class="image">
-                <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/288.jpg" alt="rasm bor">
-            </div>
-
-        </div>
-
-        <div class="main">
-            <div class="image">
-                <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/278.jpg" alt="rasm bor">
-            </div>
-            <div class="image">
-                <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/275.jpg" alt="rasm bor">
-            </div>
-
-            <div class="image">
-                <img class="images" src="https://urlib.uz/wp-content/uploads/2023/09/274.jpg" alt="rasm bor">
-            </div>
-
-        </div>
+    <form method="GET" th:action="@{/profile/create}">
+           <button  style="float: left" type="submit"> Register</button>
     </form>
+    <form method="GET" th:action="@{/profile/chesk}">
+            <button style="margin-left: 5px" type="submit"> Login</button>
+    </form>
+
+</div>
+          <div class="head" th:each="list, iStat : ${bookList}">
+
+            <div class="main" >
+                 <div class="boox">
+                     <img class="boox-image" th:src="${list.attachID}" alt="rasm bor">
+                     <h5 th:text="${list.name}"></h5>
+                     <p th:text="${list.description}"></p>
+                     <a href="">Read More</a>
+                 </div>
+            </div>
+
+          </div>
+
 
 </header>
 

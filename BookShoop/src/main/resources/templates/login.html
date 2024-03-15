@@ -24,10 +24,10 @@
     th:action="@{/profile/login}" method="POST" th:object="${profile}">
 
     <label  for="isim">Name</label>
-    <input type="text" th:field="${profile.name}" id="isim" name="isim" placeholder="name"><br><br>
+    <input type="text" th:field="${profile.name}" id="isim" name="isim" placeholder="name" required><br><br>
 
     <label  for="email">Email</label>
-    <input type="email" th:field="${profile.surname}" id="email" name="sharf" placeholder="email"><br><br>
+    <input type="email" th:field="${profile.email}" id="email" name="sharf" placeholder="email" required><br><br>
 
     <button type="submit"> Login</button>
 

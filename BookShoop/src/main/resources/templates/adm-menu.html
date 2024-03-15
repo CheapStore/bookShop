@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form{
+            margin-left: 100px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        button{
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div>
+    <p style="font-weight: bold">Admin Page:</p>
+</div>
+
+    <form th:action="@{/profile/adm/userlist}" th:methods="GET" >
+        <button type="submit">User List</button>
+    </form>
+
+
+
+     <form th:action="@{/profile/adm/update}" th:methods="GET" >
+         <button type="submit">Update User</button>
+     </form>
+
+
+
+     <form th:action="@{/book/create}" th:methods="GET" >
+         <button type="submit">Add Book</button>
+     </form>
+
+
+
+     <form th:action="@{/book/adm/bookList}" th:methods="GET" >
+         <button type="submit">Book List</button>
+     </form>
+
+     <form th:action="@{/book}" th:methods="GET" >
+          <button type="submit">Menu</button>
+     </form>
+
+
+
+
+
+
+
+</body>
+</html>

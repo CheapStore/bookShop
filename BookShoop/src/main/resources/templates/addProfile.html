@@ -41,9 +41,9 @@
 </head>
 <body>
 
-<a style="text-align: left" th:href="@{/book}" methods="GET" ><i>MENU</i></a>
+<a style="text-align: left" th:href="@{/book/menu}" methods="GET" > <b><<</b>MENU </a>
 <div style="width: 50%; margin: auto">
-    <h2>Login Form</h2>
+    <h2>Registration Page </h2>
 
     <form
           th:action="@{/profile/save}" method="POST" th:object="${profile}">
@@ -55,7 +55,8 @@
 
         <label for="email">Email</label>
         <input type="email" th:field="${profile.email}" id="email" name="email" placeholder="Email">
-        <button type="submit"> Register </button>
+
+        <button type="submit" >  Register </button>
     </form>
 
 

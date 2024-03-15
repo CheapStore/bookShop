@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="icon" type="image/jpg"
+          href="https://avatars.mds.yandex.net/i?id=8d30b8f4e1564f8ab2e2ba31e95d5159ba54ddb2-10576628-images-thumbs&n=13">
+    <style>
+        input {
+            text-align: left;
+            width: 60%;
+            font-size: 20px;
+        }
+
+        button {
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        .image {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 30px;
+        }
+
+        .images {
+            text-align: center;
+            height: 320px;
+            width: 240px;
+            margin-left: 50px;
+
+        }
+
+        .main {
+
+            margin: 2em auto;
+            padding: 25px;
+            width: 930px;
+
+        }
+
+
+        b {
+            cursor: pointer;
+        }
+
+        .container {
+            margin-top: 5px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div>
+    <div th:if="${profile.getEmail()==null}">
+
+        <div style="width: 50%; margin: auto">
+            <form method="GET" th:action="@{/profile/create}">
+                <button style="text-align: center;border-radius: 10px" type="submit"> Register</button>
+            </form>
+        </div>
+        <div style="width: 50%; margin: auto">
+            <form method="GET" th:action="@{/book/menu}">
+                <button style="text-align: center;border-radius: 10px" type="submit"> Menu</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div th:if="${profile.getEmail()!=null && profile.getRole()=='ADMIN'}">
+        <div style="width: 50%; margin: auto">
+            <form th:action="@{/profile/adm/menu}" >
+                <button type="submit"> Admin Page </button>
+            </form>
+        </div>
+
+    </div>
+
+    <div th:if="${profile.getEmail()!=null&& profile.getRole()!='ADMIN'}">
+     <form
+            th:action="@{/book/menu}" method="GET">
+        <b th:text="Hello  +${profile.getName()}"></b>
+        <button type="submit">Menu</button>
+    </form>
+    </div>
+
+
+
+
+
+</div>
+
+
+</body>
+</html>
