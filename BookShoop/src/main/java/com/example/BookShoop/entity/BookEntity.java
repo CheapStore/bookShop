@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Setter
@@ -17,6 +18,9 @@ public class BookEntity {
     private Integer id;
     @Column(name = "book_name")
     private String name;
+
+
+
 
     @Column(name = "book_author")
     private String author;
@@ -35,8 +39,11 @@ public class BookEntity {
     @Column(name = "attach_id",insertable=false, updatable=false)
     private String attach_id;
 
-    @Column(name = "created_date")
-    private LocalDateTime createdDate;
+    @Column(name = "Written_date")
+    private LocalDate WrittenDate;
+
+    @Column(name = "Pupublication_date")
+    private LocalDate publicationDate;
 
     @Column(name = "description",columnDefinition = "TEXT")
     private String description;

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/book")
@@ -28,7 +29,13 @@ public class BookController {
     }
 
 
-
+    @GetMapping("/about/{bookID}")
+    public String about(Model model,@PathVariable("bookID") Integer bookID){
+        BookDTO book=service.findBook(bookID);
+        System.out.println(book);
+        model.addAttribute("bookDTO",book);
+       return "book-about";
+    }
 
 
 
@@ -40,9 +47,9 @@ public class BookController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?>ave(@ModelAttribute BookDTO dto){
-        System.out.println("dto = " + dto);
-        return ResponseEntity.ok( service.create(dto));
+    public String save(@ModelAttribute BookDTO dto){
+        ResponseEntity.ok( service.create(dto));
+        return "adm-menu";
     }
 
     @GetMapping("/create")

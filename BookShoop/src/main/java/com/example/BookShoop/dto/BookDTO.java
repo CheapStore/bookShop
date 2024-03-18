@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Setter
@@ -20,7 +21,8 @@ public class BookDTO {
     private Double price;
     private BookLanguage language;
     private  String attachID;
-    private LocalDateTime createdDate;
+    private LocalDate publicationDate;
+    private LocalDate writterDate;
     private String description;
 
 }

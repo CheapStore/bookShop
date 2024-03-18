@@ -3,6 +3,7 @@ package com.example.BookShoop.controller;
 
 import com.example.BookShoop.dto.ProfileDTO;
 import com.example.BookShoop.entity.ProfileEntity;
+import com.example.BookShoop.enums.ProfileRole;
 import com.example.BookShoop.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -34,9 +36,17 @@ public class ProfileController {
 
     @PostMapping("/login")
     public String login(Model model, @ModelAttribute ProfileDTO dto) {
+        System.out.println(dto);
         ProfileDTO profile = service.login(dto);
-        model.addAttribute("profile", profile);
-        return "menu-login";
+        if (profile.getRole().equals("ADMIN")){
+            return "adm-menu";
+        }
+        if (!Objects.equals(profile.getPassword(), dto.getPassword())){
+            model.addAttribute("profile", new ProfileDTO());
+            return "addProfile";
+        }
+
+        return "menu";
     }
 
     @PostMapping("/save")

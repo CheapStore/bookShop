@@ -4,19 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <style>
 
-    .header{
-        margin-left: 15px;
-    }
-
-
-
-
-
-    </style>
-
-
+<link rel="stylesheet" th:href="@{/css/registerLogin.css}">
 
 
 </head>
@@ -40,9 +29,28 @@
            <label for="price">Price</label>
            <input type="number" th:field="${book.price}" id="price" name="price" placeholder="Book Price">
 
-           <label for="lan">Language</label>
-           <input type="text" th:field="${book.language}" id="lan" name="lan" placeholder="UZB ENG RUS"><br><br>
+
+            <label for="lan">Language</label>
+            <select th:field="${book.language}" name="lan" id="lan">
+               <option th:value="'UZB'" >O`zbek</option>
+               <option th:value="'ENG'" >Enlish</option>
+               <option th:value="'RUS'" >Russ</option>
+            </select><br><br>
+
+
+           <label for="writerDate">Writer Date</label>
+           <input type="date" th:field="${book.writterDate}" id="writerDate"  placeholder="date" required><br><br>
+
+
+           <label for="publicationDate">Publication  Date</label>
+           <input type="date" th:field="${book.publicationDate}" id="publicationDate"  placeholder="date" required><br><br>
+
+           <label for="about">About</label><br>
+           <textarea th:field="${book.description}" name="about" id="about" rows="10" cols="50"></textarea>
+
            <button  style="cursor: pointer" type="submit" class="button">Save</button>
+
+
 
         </form>
 

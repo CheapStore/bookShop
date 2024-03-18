@@ -19,34 +19,30 @@ public class ProfileService {
     private ProfileRepository repository;
 
     public boolean create(ProfileDTO dto) {
-        if (Objects.equals(dto.getEmail(), "") || Objects.equals(dto.getName(), "") || Objects.equals(dto.getSurname(), "")) {
+        if (Objects.equals(dto.getEmail(), "") || Objects.equals(dto.getName(), "")
+                || Objects.equals(dto.getSurname(), "")|| Objects.equals(dto.getPassword(), "")) {
             return false;
         }
         ProfileEntity entity = new ProfileEntity();
         entity.setRole(ProfileRole.USER);
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
+        entity.setPassword(dto.getPassword());
         entity.setEmail(dto.getEmail());
         repository.save(entity);
         return true;
     }
 
     public ProfileDTO login(ProfileDTO dto) {
-        Optional<ProfileEntity> optional = repository.findByNameAndEmail(dto.getName(), dto.getEmail());
+        Optional<ProfileEntity> optional = repository.findByPasswordAndEmail(dto.getPassword(), dto.getEmail());
         if (optional.isEmpty()) {
-            ProfileDTO profileDTO = new ProfileDTO();
-            profileDTO.setEmail(null);
-            return profileDTO;
+         return new ProfileDTO();
         }
         ProfileEntity entity = optional.get();
         ProfileDTO dto1 = new ProfileDTO();
-        dto1.setEmail(entity.getEmail());
-        dto1.setName(entity.getName());
-        dto1.setSurname(entity.getSurname());
+        dto1.setPassword(entity.getPassword());
         dto1.setRole(entity.getRole().name());
         return dto1;
-
-
     }
 
     public List<ProfileDTO> getAll() {

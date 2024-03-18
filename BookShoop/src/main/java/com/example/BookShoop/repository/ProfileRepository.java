@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface ProfileRepository extends CrudRepository<ProfileEntity,Integer> {
 
 
-    @Query("from ProfileEntity p where p.name=?1 and p.email=?2")
-    Optional<ProfileEntity>findByNameAndEmail(String name,String email);
+    @Query("from ProfileEntity p where p.password=?1 and p.email=?2")
+    Optional<ProfileEntity>findByPasswordAndEmail(String password,String email);
 }

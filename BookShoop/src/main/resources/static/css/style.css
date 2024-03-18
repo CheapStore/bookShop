@@ -1,0 +1,28 @@
+
+
+
+.qidir{
+    display: flex;
+    justify-content: center;
+}
+.kirish{
+    margin-left: 70px;
+}
+input{
+    font-size: 25px;
+    border-radius: 15px;
+}
+button{
+    font-size: 25px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+ button:hover{
+    background-color: blue;
+    color: wheat;
+}
+
+
+
+
+

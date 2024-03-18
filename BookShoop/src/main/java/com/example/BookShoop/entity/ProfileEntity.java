@@ -21,6 +21,9 @@ public class ProfileEntity {
     @Column(name = "surname")
     private String surname;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "email")
     private String email;
 

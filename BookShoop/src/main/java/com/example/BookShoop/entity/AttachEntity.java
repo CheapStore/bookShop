@@ -18,6 +18,9 @@ public class AttachEntity {
     @Column(name = "attach_path")
     private String path;
 
+    @Column(name = "book_id")
+    private Integer bookId;
+
 
 
 }

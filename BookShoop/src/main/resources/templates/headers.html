@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css} "/>
+</head>
+<body>
+
+
+    <div th:fragment="menu" class="qidir">
+               <form>
+                   <label for="search"></label>
+                   <input type="text" placeholder="🔎Search" id="search" name="search" required>
+                   <button type="submit">Search</button>
+               </form>
+               <form class="kirish" th:action="@{/profile/chesk}" th:metod="GET">
+                   <button type="submit">Kirish</button>
+               </form>
+    </div>
+
+</body>
+</html>

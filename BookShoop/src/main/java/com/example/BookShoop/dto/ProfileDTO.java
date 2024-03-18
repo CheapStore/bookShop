@@ -13,6 +13,7 @@ public class ProfileDTO {
 
     private String name;
     private String surname;
+    private String password;
     private String email;
     private String role;
     private Integer id;

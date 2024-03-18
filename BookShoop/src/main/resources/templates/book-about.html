@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .head {
+            margin: auto;
+            border-radius: 15px;
+            margin-top: 30px;
+            height: 500px;
+            width: 90%;
+            border: 2px solid black;
+        }
+        .boox {
+            /*background-color: red;*/
+            width: 300px;
+            height: 500px;
+            border-radius: 15px;
+            float: left;
+            background-size: cover;
+
+        }
+
+        .boox-image {
+            height: 490px;
+            float: left;
+            margin-top: 3px;
+            margin-left: 3px;
+            width: 400px;
+            border: 2px solid black;
+            background-size: cover;
+            border-radius: 15px 15px 15px 15px;
+        }
+
+        .vertical {
+            float: left;
+            width: 60%;
+            background-size: cover;
+            height: 400px;
+            margin-left:130px;
+            margin-top: 30px;
+        }
+        p{
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<a style="cursor: pointer" th:href="@{/book/menu}">Back</a>
+
+<div class="head" th:each="book, iStat : ${bookDTO}">
+
+    <div class="boox">
+        <img class="boox-image" th:src="${bookDTO.attachID}" th:alt="images+${bookDTO.attachID}">
+    </div>
+
+    <div class="vertical">
+        <p th:text="Language+':  '+${bookDTO.language}"></p>
+        <p th:text="Muallif+':  '+${bookDTO.author}"></p>
+        <p th:text="Asar+':  '+${bookDTO.name}"></p>
+        <p th:text="Nashir+':  '+${bookDTO.publicationDate}"></p>
+        <p th:text="Yaratilgan+':  '+${bookDTO.writterDate}"></p>
+        <p th:text="Narx+':  '+${bookDTO.price}"></p>
+        <p th:text="Haqida+':  '+${bookDTO.description}"></p>
+    </div>
+
+</div>
+
+
+</body>
+</html>
