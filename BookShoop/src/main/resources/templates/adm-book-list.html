@@ -33,6 +33,9 @@
             font-weight: bold;
         }
 
+        tbody {
+            height: 100px;
+        }
 
     </style>
 </head>
@@ -48,9 +51,10 @@
         <th>Id</th>
         <th>AttachId</th>
         <th>Name</th>
-        <th>Description</th>
+<!--        <th>Description</th>-->
         <th>Language</th>
         <th>Author</th>
+        <th>Category</th>
         <th>Price</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -64,9 +68,10 @@
         <td th:text="${list.id}"></td>
         <td th:text="${list.attachID}"></td>
         <td th:text="${list.name}"></td>
-        <td th:text="${list.description}"></td>
+<!--        <td th:text="${list.description}"></td>-->
         <td th:text="${list.language}"></td>
         <td th:text="${list.author}"></td>
+        <td th:text="${list.category}"></td>
         <td th:text="${list.price}"></td>
         <td>
             <a th:href="@{/book/go-to-edit/{bookID}(bookID=${list.id})}">Edit</a>

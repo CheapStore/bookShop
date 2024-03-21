@@ -9,9 +9,10 @@
 
 
     <div th:fragment="menu" class="qidir">
-               <form>
+
+               <form th:action="@{/book/search/{searchText}(searchText=searchText)}" th:method="GET">
                    <label for="search"></label>
-                   <input type="text" placeholder="🔎Search" id="search" name="search" required>
+                   <input type="text"  placeholder="🔎Search" id="search" name="searchText" required>
                    <button type="submit">Search</button>
                </form>
                <form class="kirish" th:action="@{/profile/chesk}" th:metod="GET">

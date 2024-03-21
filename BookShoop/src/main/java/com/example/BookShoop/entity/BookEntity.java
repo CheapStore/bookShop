@@ -1,5 +1,6 @@
 package com.example.BookShoop.entity;
 
+import com.example.BookShoop.enums.BookCategory;
 import com.example.BookShoop.enums.BookLanguage;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -48,7 +49,9 @@ public class BookEntity {
     @Column(name = "description",columnDefinition = "TEXT")
     private String description;
 
-
+    @Column(name = "book_category")
+    @Enumerated(EnumType.STRING)
+    private BookCategory category;
 
 
 }

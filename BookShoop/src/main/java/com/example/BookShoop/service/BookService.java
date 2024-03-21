@@ -8,7 +8,6 @@ import com.example.BookShoop.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +34,7 @@ public class BookService {
         entity.setAttach_id(dto.getAttachID());
         entity.setPublicationDate(dto.getPublicationDate());
         entity.setWrittenDate(dto.getWritterDate());
+        entity.setCategory(dto.getCategory());
         entity.setDescription(dto.getDescription());
         entity.setLanguage(dto.getLanguage());
         entity.setPrice(dto.getPrice());
@@ -67,6 +67,7 @@ public class BookService {
         dto.setAuthor(entity.getAuthor());
         dto.setPublicationDate(entity.getPublicationDate());
         dto.setWritterDate(entity.getWrittenDate());
+        dto.setCategory(entity.getCategory());
         dto.setPrice(entity.getPrice());
         return dto;
     }
@@ -75,4 +76,20 @@ public class BookService {
         Optional<BookEntity> search = repository.search(bookID);
         return dto(search.get());
     }
+
+    public void edite(Integer bookId, BookDTO bookDTO) {
+        Optional<BookEntity> optional = repository.findById(bookId);
+        BookEntity entity = optional.get();
+        entity.setCategory(bookDTO.getCategory());
+        entity.setPrice(bookDTO.getPrice());
+        entity.setName(bookDTO.getName());
+        entity.setAuthor(bookDTO.getAuthor());
+        entity.setLanguage(bookDTO.getLanguage());
+        entity.setDescription(bookDTO.getDescription());
+        entity.setWrittenDate(bookDTO.getWritterDate());
+        entity.setPublicationDate(bookDTO.getPublicationDate());
+        repository.save(entity);
+
+    }
+
 }

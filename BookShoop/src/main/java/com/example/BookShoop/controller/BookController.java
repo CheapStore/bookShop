@@ -32,7 +32,6 @@ public class BookController {
     @GetMapping("/about/{bookID}")
     public String about(Model model,@PathVariable("bookID") Integer bookID){
         BookDTO book=service.findBook(bookID);
-        System.out.println(book);
         model.addAttribute("bookDTO",book);
        return "book-about";
     }
@@ -40,10 +39,11 @@ public class BookController {
 
 
 
-    @PostMapping("/search")
-    public String search(Model model, @ModelAttribute String search){
-        service.serach(search);
-        return "menu";
+    @GetMapping("/search/{searchText}")
+    public String search(Model model, @RequestParam String searchText){
+        service.serach(searchText);
+        model.addAttribute("text",searchText);
+        return "search-text";
     }
 
     @PostMapping("/save")
@@ -55,6 +55,7 @@ public class BookController {
     @GetMapping("/create")
     public String create(Model model){
         model.addAttribute("book",new BookDTO());
+        model.addAttribute("isEdit", false);
         return "book-create";
     }
 
@@ -66,5 +67,28 @@ public class BookController {
         return "adm-book-list";
     }
 
+    @GetMapping("/category/{bookName}")
+    public String category(Model model,@PathVariable("bookName") String bookName){
+        return "menu";
+    }
+
+
+    @GetMapping("/go-to-edit/{bookId}")
+    public String save(Model model, @PathVariable("bookId") Integer bookId) {
+        BookDTO  dto= service.findBook(bookId);
+        if (dto.getId()==null) {
+            return "404";
+        }
+        model.addAttribute("book", dto);
+        model.addAttribute("isEdit", true);
+        return "book-create";
+    }
+
+    @PostMapping("/edite/{bookId}")
+    public String edit(Model model, @PathVariable("bookId") Integer bookId,
+                       @ModelAttribute BookDTO bookDTO) {
+        service.edite(bookId,bookDTO);
+        return "adm-book-list";
+    }
 
 }

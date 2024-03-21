@@ -1,9 +1,11 @@
 package com.example.BookShoop.controller;
 
 
+import com.example.BookShoop.dto.BookDTO;
 import com.example.BookShoop.dto.ProfileDTO;
 import com.example.BookShoop.entity.ProfileEntity;
 import com.example.BookShoop.enums.ProfileRole;
+import com.example.BookShoop.service.BookService;
 import com.example.BookShoop.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -21,6 +23,8 @@ public class ProfileController {
     @Autowired
     private ProfileService service;
 
+    @Autowired
+    private BookService bookService;
     @GetMapping("/create")
     public String goToLoginPage(Model model) {
         model.addAttribute("profile", new ProfileDTO());
@@ -36,28 +40,29 @@ public class ProfileController {
 
     @PostMapping("/login")
     public String login(Model model, @ModelAttribute ProfileDTO dto) {
-        System.out.println(dto);
+
         ProfileDTO profile = service.login(dto);
-        if (profile.getRole().equals("ADMIN")){
-            return "adm-menu";
-        }
-        if (!Objects.equals(profile.getPassword(), dto.getPassword())){
+        if (profile == null) {
             model.addAttribute("profile", new ProfileDTO());
             return "addProfile";
+        } else {
+            if (profile.getRole().equals(ProfileRole.ADMIN.name())) {
+                return "adm-menu";
+            }
+            List<BookDTO> list= bookService.getAll();
+            model.addAttribute("bookList",list);
+            return "menu";
         }
 
-        return "menu";
     }
 
     @PostMapping("/save")
     public String create(Model model, @ModelAttribute ProfileDTO dto) {
-        boolean b = service.create(dto);
-        if (b) {
+             service.create(dto);
+        System.out.println("dto = " + dto);
+        List<BookDTO> list= bookService.getAll();
+            model.addAttribute("bookList",list);
             return "menu";
-        } else {
-            model.addAttribute("profile", new ProfileDTO());
-            return "addProfile";
-        }
     }
 
 
@@ -88,6 +93,19 @@ public class ProfileController {
 
     @GetMapping("/go-to-edit/{profileID}")
     public String save(Model model, @PathVariable("profileID") Integer profileID) {
+        ProfileDTO profile = service.findProfile(profileID);
+        model.addAttribute("profile", profile);
+        return "update-profile";
+    }
+
+    @PostMapping("/update/{profileId}")
+    public String edit(Model model, @PathVariable("profileId") Integer profileId,
+                       @ModelAttribute ProfileDTO profileDTO) {
+        System.out.println("Update>>>"+profileDTO);
+        System.out.println("Update>>>"+profileId);
+        service.update(profileId, profileDTO);
+        List<ProfileDTO> list = service.getAll();
+        model.addAttribute("list", list);
         return "adm-user-list";
     }
 }

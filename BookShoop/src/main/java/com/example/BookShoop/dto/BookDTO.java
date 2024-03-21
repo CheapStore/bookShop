@@ -1,5 +1,6 @@
 package com.example.BookShoop.dto;
 
+import com.example.BookShoop.enums.BookCategory;
 import com.example.BookShoop.enums.BookLanguage;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class BookDTO {
     private String author;
     private Double price;
     private BookLanguage language;
+    private BookCategory category;
     private  String attachID;
     private LocalDate publicationDate;
     private LocalDate writterDate;

@@ -4,14 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .head {
-            margin: auto;
-            border-radius: 15px;
-            margin-top: 30px;
-            height: 500px;
-            width: 90%;
-            border: 2px solid black;
-        }
+
         .boox {
             /*background-color: red;*/
             width: 300px;
@@ -66,6 +59,7 @@
         <p th:text="Yaratilgan+':  '+${bookDTO.writterDate}"></p>
         <p th:text="Narx+':  '+${bookDTO.price}"></p>
         <p th:text="Haqida+':  '+${bookDTO.description}"></p>
+        <p th:text="Categoriya+':  '+${bookDTO.category}"></p>
     </div>
 
 </div>

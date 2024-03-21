@@ -1,6 +1,7 @@
 package com.example.BookShoop.service;
 
 
+import com.example.BookShoop.dto.BookDTO;
 import com.example.BookShoop.dto.ProfileDTO;
 import com.example.BookShoop.entity.ProfileEntity;
 import com.example.BookShoop.enums.ProfileRole;
@@ -19,10 +20,6 @@ public class ProfileService {
     private ProfileRepository repository;
 
     public boolean create(ProfileDTO dto) {
-        if (Objects.equals(dto.getEmail(), "") || Objects.equals(dto.getName(), "")
-                || Objects.equals(dto.getSurname(), "")|| Objects.equals(dto.getPassword(), "")) {
-            return false;
-        }
         ProfileEntity entity = new ProfileEntity();
         entity.setRole(ProfileRole.USER);
         entity.setName(dto.getName());
@@ -35,14 +32,8 @@ public class ProfileService {
 
     public ProfileDTO login(ProfileDTO dto) {
         Optional<ProfileEntity> optional = repository.findByPasswordAndEmail(dto.getPassword(), dto.getEmail());
-        if (optional.isEmpty()) {
-         return new ProfileDTO();
-        }
-        ProfileEntity entity = optional.get();
-        ProfileDTO dto1 = new ProfileDTO();
-        dto1.setPassword(entity.getPassword());
-        dto1.setRole(entity.getRole().name());
-        return dto1;
+        return optional.map(this::dto).orElse(null);
+
     }
 
     public List<ProfileDTO> getAll() {
@@ -62,8 +53,26 @@ public class ProfileService {
         dto.setEmail(entity.getEmail());
         dto.setId(entity.getId());
         dto.setRole(entity.getRole().name());
+        dto.setPassword(entity.getPassword());
         dto.setSurname(entity.getSurname());
         dto.setName(entity.getName());
         return dto;
+    }
+
+    public ProfileDTO findProfile(Integer profileID) {
+        Optional<ProfileEntity> optional = repository.findById(profileID);
+        ProfileEntity profileEntity = optional.get();
+       return dto(profileEntity);
+    }
+
+
+    public void update(Integer profileId, ProfileDTO dto) {
+        Optional<ProfileEntity> optional = repository.findById(profileId);
+        ProfileEntity entity = optional.get();
+      entity.setPassword(dto.getPassword());
+      entity.setEmail(dto.getEmail());
+      entity.setRole(ProfileRole.valueOf(dto.getRole()));
+      entity.setSurname(dto.getSurname());
+      repository.save(entity);
     }
 }

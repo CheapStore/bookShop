@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-
 <link rel="stylesheet" th:href="@{/css/registerLogin.css}">
 
 
 </head>
 <body>
 
-<a style="text-align: left" th:href="@{/book/menu}" methods="GET" > <b><<</b>MENU </a>
+<a class="a" th:href="@{/book/menu}" methods="GET" > <b><<</b>MENU </a>
+<br>
+<a style="text-align: left" th:href="@{/profile/adm/menu}" methods="GET" > <b><<</b> Admin Page </a>
+
+
+
 <div style="width: 50%; margin: auto">
 
        <form method="POST"
-              th:action="@{/book/save}" th:object="${book}">
+             th:action="${isEdit} ? @{/book/edite/{bookId}(bookId=${book.id})} : @{/book/save}" th:object="${book}">
+
             <label class="header" for="name">Name</label>
             <input type="text" th:field="${book.name}" id="name" name="name" placeholder="Book Name">
 
@@ -37,6 +42,14 @@
                <option th:value="'RUS'" >Russ</option>
             </select><br><br>
 
+           <label for="category">Category</label>
+           <select th:field="${book.category}" name="lan" id="category">
+               <option th:value="'ASAR'" >Asar</option>
+               <option th:value="'DARSLIK'" >Darslik</option>
+               <option th:value="'JURNAL'" >Jurnal</option>
+               <option th:value="'MAQOLA'" >Maqola</option>
+           </select><br><br>
+
 
            <label for="writerDate">Writer Date</label>
            <input type="date" th:field="${book.writterDate}" id="writerDate"  placeholder="date" required><br><br>
@@ -48,7 +61,7 @@
            <label for="about">About</label><br>
            <textarea th:field="${book.description}" name="about" id="about" rows="10" cols="50"></textarea>
 
-           <button  style="cursor: pointer" type="submit" class="button">Save</button>
+           <button  style="cursor: pointer" type="submit" class="button" th:text="${isEdit} ? 'Update':'Save'">Save</button>
 
 
 

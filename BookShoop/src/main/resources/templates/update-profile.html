@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form method="POST"
+      th:action="@{/profile/update/{profileId}(profileId=${profile.id})}" th:object="${profile}">
+
+    <label class="header" for="name">Name</label>
+    <input type="text" th:field="${profile.name}" id="name" name="name" placeholder="Profile name">
+
+    <label class="surname" for="surname">Surname</label>
+    <input type="text" th:field="${profile.surname}" id="surname" name="surname" placeholder="Profile surname">
+
+    <label class="password" for="password">Password</label>
+    <input type="text" th:field="${profile.password}" id="password" name="password" placeholder="Profile password">
+
+    <label class="email" for="email">Email</label>
+    <input type="email" th:field="${profile.email}" id="email" name="email" placeholder="Profile email">
+    <br><br>
+    <label for="role">Role</label>
+    <select th:field="${profile.role}" name="role" id="role">
+        <option th:value="'ADMIN'" >Admin</option>
+        <option th:value="'USER'" >User</option>
+    </select><br><br>
+
+    <button  style="cursor: pointer" type="submit" class="button" >Update</button>
+</form>
+
+
+
+</body>
+</html>

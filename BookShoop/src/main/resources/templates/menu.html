@@ -4,76 +4,46 @@
     <meta charset="UTF-8">
     <title> Book</title>
     <link rel="icon" type="image/jpg"
-          href="https://avatars.mds.yandex.net/i?id=8d30b8f4e1564f8ab2e2ba31e95d5159ba54ddb2-10576628-images-thumbs&n=13">
+       href="https://avatars.mds.yandex.net/i?id=8d30b8f4e1564f8ab2e2ba31e95d5159ba54ddb2-10576628-images-thumbs&n=13">
+
+    <link rel="stylesheet" th:href="@{/css/style.css} "/>
+    <link rel="stylesheet" th:href="@{/css/bookImagesShoowStyle.css} "/>
+    <link rel="stylesheet" th:href="@{/css/footerStyle.css} "/>
+
 
     <style>
-        section{
-            border: 10px solid black;
-            height: 20vh;
-        }
-        h5 {
-            margin-top: 0;
-            font-size: 15px;
-            text-align: center;
-        }
-
-        .boox {
-            margin-top: 20px;
-            background-color: palegoldenrod;
-            width:300px;
-            height: 400px;
-            border: 2px solid black;
-            margin-left: 2.5%;
-            margin-right: 2.5%;
-            float: left;
-            border-radius: 15px;
-            box-sizing: border-box;
-        }
-        .boox-image {
-            height: 300px;
-            width:297px;
-            margin-bottom: 15px;
-            background-size: cover;
-            border-radius: 15px 15px 0 0;
-        }
-        .boox a {
-            background-color: black;
-            color: wheat;
-            padding: 5px 5px;
-            display: block;
-            text-align: center;
-            margin: 10px 40px;
-
+        .category{
+            width: 70%;
+            height: 40px;
+            margin: 15px auto 15px auto;
             border-radius: 10px;
         }
-        .head{
-           margin-top: 10px;
+        .categoryName{
+            width: 20%;
+            margin: 10px 25px 10px 25px;
+            float: left;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
         }
-        a:hover{
-            color: red;
-            background-color: wheat;
 
-        }
+
+
     </style>
-    <link rel="stylesheet" th:href="@{/css/style.css} "/>
-    <link rel="stylesheet" th:href="@{/css/footerStyle.css} "/>
 </head>
 <body>
 
-    <div th:insert="headers::menu"></div>
+        <div th:insert="headers::menu"></div>
 
-<!--      <div>-->
 
-<!--          <form method="GET" th:action="@{/profile/create}">-->
-<!--                 <button  style="float: left" type="submit"> Register</button>-->
-<!--          </form>-->
-<!--          <form method="GET" th:action="@{/profile/chesk}">-->
-<!--                  <button style="margin-left: 5px" type="submit"> Login</button>-->
-<!--          </form>-->
+              <div class="category">
+                      <a class="categoryName" th:href="@{/book/category/{categoryName}(categoryName='Asarlar')}">Asarlar</a>
+                      <a class="categoryName" th:href="@{/book/category/{categoryName}(categoryName='Darsliklar')}">Darsliklar</a>
+                      <a class="categoryName" th:href="@{/book/category/{categoryName}(categoryName='Jurnallar')}">Jurnallar</a>
+                      <a class="categoryName" th:href="@{/book/category/{categoryName}(categoryName='Maqolalar')}">Maqolalar</a>
+              </div>
 
-<!--       </div>-->
-
-       <div class="head" th:each="list, iStat : ${bookList}">
+       <div class="bookImagesShow" th:each="list, iStat : ${bookList}">
 
                  <div class="boox">
                      <img class="boox-image" th:src="${list.attachID}" alt="rasm bor">
