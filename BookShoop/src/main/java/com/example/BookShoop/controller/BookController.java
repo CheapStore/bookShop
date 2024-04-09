@@ -23,7 +23,6 @@ public class BookController {
     @GetMapping("/menu")
     public String menu(Model model){
        List<BookDTO> list= service.getAll();
-
        model.addAttribute("bookList",list);
        return "menu";
     }
@@ -41,15 +40,20 @@ public class BookController {
 
     @GetMapping("/search/{searchText}")
     public String search(Model model, @RequestParam String searchText){
-        service.serach(searchText);
-        model.addAttribute("text",searchText);
-        return "search-text";
+        List<BookDTO> list = service.serach(searchText);
+        model.addAttribute("bookDTO",list);
+        return "search-book";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute BookDTO dto){
-        ResponseEntity.ok( service.create(dto));
-        return "adm-menu";
+    public String save(Model model,@ModelAttribute BookDTO dto){
+        boolean result = service.create(dto);
+        if (result){
+            return "adm-menu";
+        }
+        model.addAttribute("book",new BookDTO());
+        model.addAttribute("isEdit", false);
+        return "book-create";
     }
 
     @GetMapping("/create")
@@ -69,7 +73,9 @@ public class BookController {
 
     @GetMapping("/category/{bookName}")
     public String category(Model model,@PathVariable("bookName") String bookName){
-        return "menu";
+       List<BookDTO> list= service.findCategory(bookName);
+       model.addAttribute("list",list);
+        return "category-menu";
     }
 
 

@@ -4,30 +4,33 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/registerLogin.css}"/>
-
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/js/function.js}">
 </head>
 <body>
 
 <a style="text-align: left" th:href="@{/book/menu}" methods="GET" > <b><<</b>MENU </a>
 <div style="width: 50%; margin: auto">
     <h2>Registration Page </h2>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <form
           th:action="@{/profile/save}" method="POST" th:object="${profile}">
         <label for="isim">Name</label>
-        <input type="text" th:field="${profile.name}" id="isim" name="isim" placeholder="Name">
+        <input type="text" th:field="${profile.name}" id="isim" name="isim" placeholder="Name" required>
 
         <label for="sharf">Surname</label>
-        <input type="text" th:field="${profile.surname}" id="sharf" name="sharf" placeholder="Surname">
+        <input type="text" th:field="${profile.surname}" id="sharf" name="sharf" placeholder="Surname" required>
 
         <label for="email">Email</label>
-        <input type="email" th:field="${profile.email}" id="email" name="email" placeholder="Email">
+        <input type="email" th:field="${profile.email}" id="email" name="email" placeholder="Email"required>
 
         <label for="password">Password</label>
-        <input type="password" th:field="${profile.password}" id="password" name="password" placeholder="Password">
+        <input type="password" th:field="${profile.password}" id="password" name="password" placeholder="Password" required size="30">
+<!--        <img src="http://yourdomain.com/icons/icon.png" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();" />-->
 
         <button type="submit" >  Register </button>
+
     </form>
 
 

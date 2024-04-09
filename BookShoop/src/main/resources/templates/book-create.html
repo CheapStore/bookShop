@@ -16,56 +16,117 @@
 
 
 
+<!--<div style="width: 50%; margin: auto">-->
+
+<!--       <form method="POST"-->
+<!--             th:action="${isEdit} ? @{/book/edite/{bookId}(bookId=${book.id})} : @{/book/save}" th:object="${book}">-->
+
+<!--            <label class="header" for="name">Name</label>-->
+<!--            <input type="text" th:field="${book.name}" id="name" name="name" placeholder="Book Name">-->
+
+<!--            <label class="header" for="author">Author</label>-->
+<!--            <input type="text" th:field="${book.author}" id="author" name="author" placeholder="Book Author">-->
+
+<!--            <label class="header" for="images">ImagesId</label>-->
+<!--            <input type="text" th:field="${book.attachID}" id="images" name="images" placeholder="Book ImagesID">-->
+<!--           <br><br>-->
+
+<!--           <label for="price">Price</label>-->
+<!--           <input type="number" th:field="${book.price}" id="price" name="price" placeholder="Book Price">-->
+
+
+<!--            <label for="lan">Language</label>-->
+<!--            <select th:field="${book.language}" name="lan" id="lan">-->
+<!--               <option th:value="'UZB'" >O`zbek</option>-->
+<!--               <option th:value="'ENG'" >Enlish</option>-->
+<!--               <option th:value="'RUS'" >Russ</option>-->
+<!--            </select><br><br>-->
+
+<!--           <label for="category">Category</label>-->
+<!--           <select th:field="${book.category}" name="lan" id="category">-->
+<!--               <option th:value="'ASAR'" >Asar</option>-->
+<!--               <option th:value="'DARSLIK'" >Darslik</option>-->
+<!--               <option th:value="'JURNAL'" >Jurnal</option>-->
+<!--               <option th:value="'MAQOLA'" >Maqola</option>-->
+<!--           </select><br><br>-->
+
+<!--           <div th:if="${book.category != 'DARSLIK'}">-->
+<!--               <label for="writerDate">Writer Date</label>-->
+<!--               <input type="date" th:field="${book.writterDate}" id="writerDate" placeholder="date" required><br><br>-->
+<!--           </div>-->
+<!--           <label for="publicationDate">Publication  Date</label>-->
+<!--           <input type="date" th:field="${book.publicationDate}" id="publicationDate"  placeholder="date" required><br><br>-->
+
+<!--           <label for="about">About</label><br>-->
+<!--           <textarea th:field="${book.description}" name="about" id="about" rows="10" cols="50"></textarea>-->
+
+<!--           <button  style="cursor: pointer" type="submit" class="button" th:text="${isEdit} ? 'Update':'Save'">Save</button>-->
+
+
+
+<!--        </form>-->
+
+<!--</div>-->
 <div style="width: 50%; margin: auto">
 
-       <form method="POST"
-             th:action="${isEdit} ? @{/book/edite/{bookId}(bookId=${book.id})} : @{/book/save}" th:object="${book}">
+    <form method="POST"
+          th:action="${isEdit} ? @{/book/edite/{bookId}(bookId=${book.id})} : @{/book/save}" th:object="${book}">
 
-            <label class="header" for="name">Name</label>
-            <input type="text" th:field="${book.name}" id="name" name="name" placeholder="Book Name">
+        <label class="header" for="name">Name</label>
+        <input type="text" th:field="${book.name}" id="name" name="name" placeholder="Book Name" required>
+
+
+        <label for="category">Category</label>
+        <select th:field="${book.category}" name="category" id="category">
+            <option th:value="'ASAR'" >Asar</option>
+            <option th:value="'DARSLIK'" >Darslik</option>
+            <option th:value="'JURNAL'" >Jurnal</option>
+            <option th:value="'MAQOLA'" >Maqola</option>
+        </select><br><br>
+
+
+
+            <label for="writerDate">Writer Date</label>
+            <input type="date" th:field="${book.writterDate}" id="writerDate" placeholder="date" required><br><br>
 
             <label class="header" for="author">Author</label>
-            <input type="text" th:field="${book.author}" id="author" name="author" placeholder="Book Author">
-
-            <label class="header" for="images">ImagesId</label>
-            <input type="text" th:field="${book.attachID}" id="images" name="images" placeholder="Book ImagesID">
-           <br><br>
-
-           <label for="price">Price</label>
-           <input type="number" th:field="${book.price}" id="price" name="price" placeholder="Book Price">
-
-
-            <label for="lan">Language</label>
-            <select th:field="${book.language}" name="lan" id="lan">
-               <option th:value="'UZB'" >O`zbek</option>
-               <option th:value="'ENG'" >Enlish</option>
-               <option th:value="'RUS'" >Russ</option>
-            </select><br><br>
-
-           <label for="category">Category</label>
-           <select th:field="${book.category}" name="lan" id="category">
-               <option th:value="'ASAR'" >Asar</option>
-               <option th:value="'DARSLIK'" >Darslik</option>
-               <option th:value="'JURNAL'" >Jurnal</option>
-               <option th:value="'MAQOLA'" >Maqola</option>
-           </select><br><br>
-
-
-           <label for="writerDate">Writer Date</label>
-           <input type="date" th:field="${book.writterDate}" id="writerDate"  placeholder="date" required><br><br>
-
-
-           <label for="publicationDate">Publication  Date</label>
-           <input type="date" th:field="${book.publicationDate}" id="publicationDate"  placeholder="date" required><br><br>
-
-           <label for="about">About</label><br>
-           <textarea th:field="${book.description}" name="about" id="about" rows="10" cols="50"></textarea>
-
-           <button  style="cursor: pointer" type="submit" class="button" th:text="${isEdit} ? 'Update':'Save'">Save</button>
+            <input type="text" th:field="${book.author}" id="author" name="author" placeholder="Book Author" required>
 
 
 
-        </form>
+        <label for="publicationDate">Publication  Date</label>
+        <input type="date" th:field="${book.publicationDate}" id="publicationDate"  placeholder="date" required><br><br>
+
+
+
+        <label class="header" for="images">ImagesId</label>
+        <input type="text" th:field="${book.attachID}" id="images" name="images" placeholder="Book ImagesID" required>
+        <br><br>
+
+        <label for="price">Price</label>
+        <input type="number" th:field="${book.price}" id="price" name="price" placeholder="Book Price" required>
+
+
+        <label for="lan">Language</label>
+        <select th:field="${book.language}" name="lan" id="lan">
+            <option th:value="'UZB'" >O`zbek</option>
+            <option th:value="'ENG'" >Enlish</option>
+            <option th:value="'RUS'" >Russ</option>
+        </select><br><br>
+
+
+
+
+
+
+        <label for="about">About</label><br>
+        <textarea th:field="${book.description}" name="about" id="about" rows="10" cols="50" required></textarea>
+
+        <button  style="cursor: pointer" type="submit" class="button" th:text="${isEdit} ? 'Update':'Save'">Save</button>
+
+
+
+    </form>
 
 
 

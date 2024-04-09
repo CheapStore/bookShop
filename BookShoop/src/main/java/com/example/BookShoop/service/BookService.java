@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -22,12 +23,20 @@ public class BookService {
     @Autowired
     private AttachRepository attachRepository;
 
-    public void serach(String search) {
+    public List<BookDTO> serach(String search) {
+        List<BookEntity>resault=repository.findBook(search.toLowerCase());
+        List<BookDTO> list = new ArrayList<>();
+        for (BookEntity entity : resault) {
+            list.add(dto(entity));
+        }
+        return list;
 
     }
 
-    public Object create(BookDTO dto) {
-
+    public boolean create(BookDTO dto) {
+        if (Objects.equals(dto.getName(), "") || Objects.equals(dto.getAttachID(), "") || Objects.equals(dto.getDescription(), "") || Objects.equals(dto.getAuthor(), "") || Objects.equals(dto.getPrice(), null)) {
+            return false;
+        }
         BookEntity entity = new BookEntity();
         entity.setName(dto.getName());
         entity.setAuthor(dto.getAuthor());
@@ -39,7 +48,7 @@ public class BookService {
         entity.setLanguage(dto.getLanguage());
         entity.setPrice(dto.getPrice());
         repository.save(entity);
-        AttachEntity attach=new AttachEntity();
+        AttachEntity attach = new AttachEntity();
         attach.setPath(dto.getAttachID());
         attach.setBookId(entity.getId());
         attachRepository.save(attach);
@@ -60,7 +69,11 @@ public class BookService {
     private BookDTO dto(BookEntity entity) {
         BookDTO dto = new BookDTO();
         dto.setId(entity.getId());
-        dto.setAttachID(entity.getAttach_id());
+        Optional<AttachEntity> optional = attachRepository.findByBookId(entity.getId());
+        if (optional.isPresent()) {
+            dto.setAttachID(optional.get().getPath());
+        }
+
         dto.setName(entity.getName());
         dto.setDescription(entity.getDescription());
         dto.setLanguage(entity.getLanguage());
@@ -92,4 +105,13 @@ public class BookService {
 
     }
 
+    public List<BookDTO> findCategory(String bookName) {
+
+        List<BookEntity> list = repository.findCategory(bookName.toLowerCase().substring(0, bookName.length() - 3));
+        List<BookDTO>dtoList=new ArrayList<>();
+        for (BookEntity entity : list) {
+           dtoList.add(dto(entity));
+        }
+        return  dtoList;
+    }
 }

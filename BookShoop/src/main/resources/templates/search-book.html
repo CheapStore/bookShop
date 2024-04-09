@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="icon" type="image/jpg"
+          href="https://avatars.mds.yandex.net/i?id=8d30b8f4e1564f8ab2e2ba31e95d5159ba54ddb2-10576628-images-thumbs&n=13">
+    <link rel="stylesheet" th:href="@{/css/style.css} "/>
+    <link rel="stylesheet" th:href="@{/css/bookImagesShoowStyle.css} "/>
+
+
+    <style>
+        .category{
+            width: 70%;
+            height: 40px;
+            margin: 15px auto 15px auto;
+            border-radius: 10px;
+        }
+        .categoryName{
+            width: 20%;
+            margin: 10px 25px 10px 25px;
+            float: left;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div th:insert="headers::menu"></div>
+
+    <div class="category">
+         <a class="categoryName" th:href="@{/book/category/{categoryName}(categoryName='Asarlar')}">Asarlar</a>
+         <a class="categoryName" th:href="@{/book/category/{categoryName}(categoryName='Darsliklar')}">Darsliklar</a>
+         <a class="categoryName" th:href="@{/book/category/{categoryName}(categoryName='Jurnallar')}">Jurnallar</a>
+         <a class="categoryName" th:href="@{/book/category/{categoryName}(categoryName='Maqolalar')}">Maqolalar</a>
+    </div>
+
+         <div class="bookImagesShow" th:each="list, iStat : ${bookDTO}">
+
+            <div class="boox">
+                <img class="boox-image" th:src="${list.attachID}" alt="rasm bor">
+                <h5 th:text="${list.name}"></h5>
+                <a th:href="@{/book/about/{bookID}(bookID=${list.id})}">Batafsil</a>
+            </div>
+
+         </div>
+
+<div style="color: black;font-weight: bold;text-align: center" th:insert="fragments::footer"></div>
+</body>
+</html>

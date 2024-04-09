@@ -59,8 +59,7 @@ public class ProfileController {
     @PostMapping("/save")
     public String create(Model model, @ModelAttribute ProfileDTO dto) {
              service.create(dto);
-        System.out.println("dto = " + dto);
-        List<BookDTO> list= bookService.getAll();
+             List<BookDTO> list= bookService.getAll();
             model.addAttribute("bookList",list);
             return "menu";
     }
@@ -80,14 +79,10 @@ public class ProfileController {
 
     @GetMapping("/go-to-delete/{profileID}")
     public String delete(Model model, @PathVariable("profileID") Integer profileID) {
-        List<ProfileDTO> list = service.getAll();
-        for (ProfileDTO dto : list) {
-            if (dto.getId().equals(profileID)) {
-                list.remove(dto);
-                model.addAttribute("adm-user-list", list);
-            }
 
-        }
+       service.deleteProfile(profileID);
+        List<ProfileDTO> list = service.getAll();
+        model.addAttribute("list", list);
         return "adm-user-list";
     }
 
@@ -101,8 +96,7 @@ public class ProfileController {
     @PostMapping("/update/{profileId}")
     public String edit(Model model, @PathVariable("profileId") Integer profileId,
                        @ModelAttribute ProfileDTO profileDTO) {
-        System.out.println("Update>>>"+profileDTO);
-        System.out.println("Update>>>"+profileId);
+
         service.update(profileId, profileDTO);
         List<ProfileDTO> list = service.getAll();
         model.addAttribute("list", list);

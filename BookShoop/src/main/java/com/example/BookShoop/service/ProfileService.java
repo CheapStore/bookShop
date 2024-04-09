@@ -75,4 +75,8 @@ public class ProfileService {
       entity.setSurname(dto.getSurname());
       repository.save(entity);
     }
+
+    public void deleteProfile(Integer profileID) {
+        repository.deleteById(profileID);
+    }
 }
